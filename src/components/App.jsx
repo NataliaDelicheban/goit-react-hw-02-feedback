@@ -5,8 +5,7 @@ import { Statistics } from './Statistics/Statistics';
 import { Notification } from './Notification/Notification';
 
 export class App extends Component {
-  static propTypes = {};
-
+ 
   state = {
     good: 0,
     neutral: 0,
@@ -29,6 +28,7 @@ export class App extends Component {
     return Math.round(this.countTotalFeedback() && good / this.countTotalFeedback() * 100);
   };
   
+  optionsKeys = Object.keys(this.state);
   render() {
     const { good, neutral, bad } = this.state;
     const showFeedback = good > 0 || neutral > 0 || bad > 0;
@@ -37,7 +37,7 @@ export class App extends Component {
       <>
       <Section title="Please leave feedback">
           <FeedbackOptions
-            options={Object.keys(this.state)}
+            options={this.optionsKeys}
             onLeaveFeedback={this.addFeedback} />
         </Section>
         <Section title="Statistics"> 
